@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/39cab4bf95.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.js" integrity="sha256-tA8y0XqiwnpwmOIl3SGAcFl2RvxHjA8qp0+1uCGmRmg=" crossorigin="anonymous"></script>  
+    <script src="java.js"></script>
     <link rel="stylesheet" href="css.css">
     <title>File Explore</title>
 </head>
@@ -33,8 +34,7 @@
             <button class="btn">Clonar</button>
         </div>
     </div>
-    <?php
-    
-    ?>
+    <!--<?php
+    ?>-->
 </body>
 </html>

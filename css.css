@@ -1,108 +1,131 @@
 :root{
-    --Black: #1c1230;
-    --Gold: #e6c98d;
-    --BigBlack: #03061a;
-    --ShadowGold: #b37841;
-    --invisible: rgba(0 0 0 / 0%);
-  }
-
-  *{
-    margin: 0px;
-    padding: 0px;
-    transition: 0.5s;
-  }
-  /*web-kit*/
-    input[type=file]{
-      display: none;
-    }
-    ::-webkit-inner-spin-button{
-
-      -webkit-appearance: none;
-    }
-    ::-webkit-scrollbar{
-
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-thumb{
-      background: rgb(0 0 0 /50%);
-      border-radius: 3px;
-    }
-    .ocultar{
-      display: none;
-    }
-    button:focus, button:focus-visible, input:focus-visible, input:focus, select:focus-visible, select:focus, textarea:focus-visible, textarea:focus{
-      outline: none;
-    }
-body{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-y: overlay;
-  background-color: var(--Black);
+  --Black: #1c1230;
+  --Gold: #e6c98d;
+  --BigBlack: #03061a;
+  --ShadowGold: #b37841;
+  --invisible: rgba(0 0 0 / 0%);
 }
-    .legenda{
-        display: flex;
-        height: 8vh;
-        width: 100vw;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        color: var(--Gold);
-        border-bottom: 2px solid var(--ShadowGold);
-        font-size: 3vh;
-        font-weight: bold;
-        font-family: monospace;
-    }
-        .legenda .ul{
-            width: 6vw;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
+
+*{
+  margin: 0px;
+  padding: 0px;
+  transition: 0.5s;
+}
+/*web-kit*/
+  input[type=file]{
+    display: none;
+  }
+  ::-webkit-inner-spin-button{
+
+    -webkit-appearance: none;
+  }
+  ::-webkit-scrollbar{
+
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb{
+    background: rgb(0 0 0 /50%);
+    border-radius: 3px;
+  }
+  .ocultar{
+    display: none;
+  }
+  button:focus, button:focus-visible, input:focus-visible, input:focus, select:focus-visible, select:focus, textarea:focus-visible, textarea:focus{
+    outline: none;
+  }
+body{
+display: flex;
+flex-direction: column;
+align-items: center;
+overflow-y: overlay;
+background-color: var(--Black);
+}
+  .legenda{
+      display: flex;
+      height: 8vh;
+      width: 100vw;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      color: var(--Gold);
+      border-bottom: 2px solid var(--ShadowGold);
+      font-size: 3vh;
+      font-weight: bold;
+      font-family: monospace;
+  }
+      .legenda .ul{
+          width: 6vw;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+      }
+          .legenda .ul .icon{
+              display: flex;
+          }
+  .tolls{
+      display: flex;
+      position: fixed;
+      flex-direction: column;
+      background-color: var(--Gold);
+      width: 4vw;
+      height: 67vh;
+      margin: 20vh 0vw 0vh 89vw;
+      justify-content: space-around;
+      align-items: center;
+      border-radius: 0.5vw;
+      font-size: 4vh;
+      color: var(--ShadowGold);
+  }
+      .tolls .toll{
+          display: flex;
+      }
+          .tolls .toll .icon{
+              display: flex;
+          }
+  .painel{
+      display: flex;
+      width: 80vw;
+      margin-top: 5vh;
+      height: 70vh;
+      flex-direction: column;
+      background-color: var(--BigBlack);
+      border: 3px solid var(--ShadowGold);
+      padding: 1vw;
+      overflow-y: overlay;
+      border-radius: 0.5vw;
+  }
+      .painel .linha{
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          border-bottom: 2px solid var(--ShadowGold);
+          background-color: var(--BigBlack);
+          color: var(--Gold);
+          font-size: 3vh;
+          font-weight: bold;
+          font-family: monospace;
+          margin-bottom: 2vh;
+          align-items: baseline;
+      }
+        .painel .linha:hover{
+          cursor: pointer;
         }
-            .legenda .ul .icon{
-                display: flex;
-            }
-    .tolls{
-        display: flex;
-        position: fixed;
-        flex-direction: column;
-        background-color: var(--Gold);
-        width: 4vw;
-        height: 67vh;
-        margin: 20vh 0vw 0vh 89vw;
-        justify-content: space-around;
-        align-items: center;
-        border-radius: 0.5vw;
-        font-size: 4vh;
-        color: var(--ShadowGold);
-    }
-        .tolls .toll{
-            display: flex;
-        }
-            .tolls .toll .icon{
-                display: flex;
-            }
-    .painel{
-        display: flex;
-    }
-        .painel .linha{
-            display: flex;
-            flex-direction: row;
-        }
-            .painel .painel .linha input[type=checkbox]{
-                display: flex;
-            }
-            .painel .painel .linha .icon{
-                display: flex;
-            }
-            .painel .painel .linha label{
-                display: flex;
-            }
-            .painel .painel .linha .btn{
-                display: flex;
-            }
-                .painel .painel .linha .btn:hover{
-                    cursor: pointer;
-                }
+          .painel .linha input[type=checkbox]{
+              display: none;
+          }
+          .painel .linha .btn{
+              display: flex;
+              background-color: var(--ShadowGold);
+              border: none;
+              padding: 0.5vw;
+              font-size: 3vh;
+              font-family: monospace;
+              font-weight: bold;
+              color: var(--Black);
+              border-radius: 0.5vw;
+          }
+              .painel .linha .btn:hover{
+                  cursor: pointer;
+              }
