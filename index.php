@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/39cab4bf95.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.js" integrity="sha256-tA8y0XqiwnpwmOIl3SGAcFl2RvxHjA8qp0+1uCGmRmg=" crossorigin="anonymous"></script>  
-    <script src="java.js"></script>
-    <link rel="stylesheet" href="css.css">
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
     <title>File Explore</title>
 </head>
 <body>
@@ -19,7 +19,7 @@
     </form>
     <div class="legenda">
         <div class="ul"><i class="icon fa-solid fa-file"></i> Arquivo</div>
-        <div class="ul"><i class="icon fa-solid fa-file-image"></i> Imagem</div>
+        <div class="ul"><i class="icon fa-solid fa-solid fa-image"></i> Imagem</div>
         <div class="ul"><i class="icon fa-solid fa-film"></i> Video</div>
         <div class="ul"><i class="icon fa-solid fa-volume-off"></i> Audio</div>
         <div class="ul"><i class="icon fa-solid fa-folder"></i> Pasta</div>
@@ -62,7 +62,7 @@
                     $nmFile = $fileInfo['filename'];
                     $ext = $fileInfo['extension'];
                     if(in_array($ext, $exts[0])){
-                        $icon = 'fa-file-image';
+                        $icon = 'fa-solid fa-image';
                     }else if(in_array($ext, $exts[1])){
                         $icon = 'fa-solid fa-film';
                     }else if(in_array($ext, $exts[2])){
@@ -72,17 +72,31 @@
                     }
                 }
             }
-            $TextFin = $file != '..'? '
-                <div class="linha" onclick="ulOnclick(this)">
-                    <input type="checkbox" id="'.$nmFile.'">
-                    <i class="icon '.$icon.'"></i>
-                    <label>'.$nmFile.'</label>
-                    <button class="btn">Excluir</button>
-                    <button class="btn">Renomear</button>
-                    <a class="btn" href="index.php?past='.$past.'/'.$nmFile.'">Abrir</a>
-                    <button class="btn">Clonar</button>
-                </div>
-            ':'
+            $TextFin = $file != '..'? ($icon!='fa-solid fa-file'? 
+                                            '
+                                                <div class="linha" onclick="ulOnclick(this)">
+                                                    <input type="checkbox" id="'.$nmFile.'">
+                                                    <i class="icon '.$icon.'"></i>
+                                                    <label>'.$nmFile.'</label>
+                                                    <button class="btn">Excluir</button>
+                                                    <button class="btn">Renomear</button>
+                                                    <a class="btn" href="index.php?past='.$past.'/'.$nmFile.'">Abrir</a>
+                                                    <button class="btn">Clonar</button>
+                                                </div>
+                                            ':
+                                            '
+                                                <div class="linha" onclick="ulOnclick(this)">
+                                                    <input type="checkbox" id="'.$nmFile.'">
+                                                    <i class="icon '.$icon.'"></i>
+                                                    <label>'.$file.'</label>
+                                                    <button class="btn">Excluir</button>
+                                                    <button class="btn">Renomear</button>
+                                                    <a class="btn" href="index.php?past='.$past.'/'.$nmFile.'">Abrir</a>
+                                                    <button class="btn">Clonar</button>
+                                                </div>
+                                            '
+                                        )
+            :'
                 <div class="linha">
                     <input type="checkbox" id="'.$nmFile.'">
                     <i class="icon '.$icon.'"></i>
@@ -104,23 +118,34 @@
     function mensage($txt){
         echo '<script>alert("'.$txt.'");</script>';
     }
-    function UpFile($file, $dir){
-        $name = $file['name'];
-        $linkF = $dir.'/'.$name;
+    function UpFile($file, $dir, $name, $ext){
+        $linkF = $dir.'/'.$name.'.'.$ext;
         move_uploaded_file($file['tmp_name'], $linkF);
     }
 
     if(isset($_POST['env'])){
         $folder = $_POST['PastFile'];
         
-        if(isset($_FILES['Upload'])){
+        if(isset($_FILES['Upload']) && $_FILES['Upload']['size'] != 0){
             $UPFile = $_FILES['Upload'];
-            $filename = $folder.'/'.$UPFile['name'];
-
-            if(!file_exists($filename)){
-                UpFile($UPFile, $folder);
-                $lp = false;
-            }
+            $path = $UPFile['name'];
+            $ext = pathinfo($path, PATHINFO_EXTENSION);
+            $com = mb_strlen($path)-mb_strlen($ext) - 1;
+            $nm = substr($path, 0, $com);
+        
+            $lp = true;
+            $a = 1;
+            while($lp == true){
+                $filename = $folder.'/'.$nm.'.'.$ext;
+                if(!file_exists($filename)){
+                    UpFile($UPFile, $folder, $nm, $ext);
+                    $lp = false;
+                }else{
+                    $nm = $nm.'('.$a.')';
+                    $a++;
+                    continue;
+                }
+            };
         }else if(isset($_POST['NomePast'])){
             $filename = $folder.'/'.$_POST['NomePast'];
 
@@ -137,14 +162,26 @@
                 }
             };
         }else{
-            $file = $_POST['NomeFile'];
-            $filename = $folder.'/'.$file;
-            $ext = pathinfo($file, PATHINFO_EXTENSION);
+            $path = $_POST['Filename'];
+            $ext = pathinfo($path, PATHINFO_EXTENSION);
+            $nm = preg_replace('/\\.[^.\\s]{3,4}$/', '', $path);
 
-            if($ext !== '' && !file_exists($filename)){
-                file_put_contents($filename, '');
-            }else{
-                mensage('Nome inválido ou Arquivo já existe!!');
+            if ($ext != '') {
+                $lp = true;
+                $a = 1;
+                while ($lp == true) {
+                    $filename = $folder.'/'.$nm.'.'.$ext;
+                    if (!file_exists($filename)) {
+                        file_put_contents($filename, '');
+                        $lp = false;
+                    } else {
+                        $nm = $nm.'('.$a.')';
+                        $a++;
+                        continue;
+                    }
+                };
+            } else {
+                mensage('Arquivo inválido');
             }
         }
     }
