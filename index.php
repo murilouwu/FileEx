@@ -115,6 +115,9 @@
 </body>
 </html>
 <?php
+    function move($page){
+        echo '<script>red("'.$page.'");</script>';
+    }
     function mensage($txt){
         echo '<script>alert("'.$txt.'");</script>';
     }
@@ -146,6 +149,7 @@
                     continue;
                 }
             };
+            move('index.php');
         }else if(isset($_POST['NomePast'])){
             $filename = $folder.'/'.$_POST['NomePast'];
 
@@ -161,6 +165,7 @@
                     continue;
                 }
             };
+            move('index.php');
         }else{
             $path = $_POST['Filename'];
             $ext = pathinfo($path, PATHINFO_EXTENSION);
@@ -180,6 +185,7 @@
                         continue;
                     }
                 };
+                move('index.php');
             } else {
                 mensage('Arquivo inválido');
             }
