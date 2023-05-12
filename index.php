@@ -75,23 +75,23 @@
             $TextFin = $file != '..'? ($icon!='fa-solid fa-file'? 
                                             '
                                                 <div class="linha" onclick="ulOnclick(this)">
-                                                    <input type="checkbox" id="'.$nmFile.'">
+                                                    <input type="checkbox" id="'.$past.'/'.$file.'">
                                                     <i class="icon '.$icon.'"></i>
                                                     <label>'.$nmFile.'</label>
                                                     <button class="btn">Excluir</button>
                                                     <button class="btn">Renomear</button>
-                                                    <a class="btn" href="index.php?past='.$past.'/'.$nmFile.'">Abrir</a>
+                                                    <a class="btn" href="index.php?past='.$past.'/'.$file.'">Abrir</a>
                                                     <button class="btn">Clonar</button>
                                                 </div>
                                             ':
                                             '
                                                 <div class="linha" onclick="ulOnclick(this)">
-                                                    <input type="checkbox" id="'.$nmFile.'">
+                                                    <input type="checkbox" id="'.$past.'/'.$file.'">
                                                     <i class="icon '.$icon.'"></i>
                                                     <label>'.$file.'</label>
                                                     <button class="btn">Excluir</button>
                                                     <button class="btn">Renomear</button>
-                                                    <a class="btn" href="index.php?past='.$past.'/'.$nmFile.'">Abrir</a>
+                                                    <a class="btn" href="index.php?past='.$past.'/'.$file.'">Abrir</a>
                                                     <button class="btn">Clonar</button>
                                                 </div>
                                             '
