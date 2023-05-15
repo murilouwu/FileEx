@@ -1,0 +1,65 @@
+.formRename{
+	display: flex;
+	width: 63vw;
+	margin-top: 18vh;
+	height: 54vh;
+	flex-direction: column;
+	background-color: var(--BigBlack);
+	border: 3px solid var(--ShadowGold);
+	padding: 1vw;
+	overflow-y: overlay;
+	border-radius: 0.5vw;
+	justify-content: center;
+	align-items: center;
+}
+	.labelRename{
+		display: flex;
+		color: var(--ShadowGold);
+		font-size: 3vh;
+		font-family: cursive;
+		font-weight: bold;
+	}
+	.inputRename{
+		display: flex;
+		text-align: center;
+		width: 51vw;
+		height: 4vh;
+		align-items: center;
+		justify-content: center;
+		border: 2px solid var(--ShadowGold);
+		border-radius: 1vw;
+		background-color: var(--Gold);
+		color: var(--Black);
+		font-weight: bold;
+		font-family: monospace;
+		font-size: 2vh;
+		margin-top: 3vh;
+	}
+		.inputRename:hover{
+			cursor: pointer;
+		}
+		.inputRename::-webkit-input-placeholder{
+            color: var(--ShadowGold);
+        }
+        .inputRename:focus{
+            color: var(--BigBlack);
+            background-color: var(--ShadowGold);
+        }
+	.envRename{
+		display: flex;
+		width: 18vw;
+		height: 6vh;
+		align-items: center;
+		justify-content: center;
+		border: 3px solid var(--Black);
+		border-radius: 1vw;
+		background-color: var(--ShadowGold);
+		color: var(--Black);
+		font-weight: bold;
+		font-family: cursive;
+		font-size: 2vh;
+		margin-top: 5vh;
+	}
+		.envRename:hover{
+			cursor: pointer;
+		}

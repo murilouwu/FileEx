@@ -35,21 +35,32 @@ function ModalOpen(fun, Past, id){
                 <input type="text" name="Filename" placeholder="Nome Do novo Arquivo" class="inputModal" minlength="1">
             </div>
             <div class="inputEnvil">
-                <label for="UploadFile" class="lbM">Ou Enviar arquivo</label>
+                <label for="UploadFile" class="lbM" id="labInputFile">Ou Enviar arquivo</label>
                 <input type="file" name="Upload" id="UploadFile" accept="*/*">
             </div>
         `;
-    }else{
+    }else if(fun == 1){
         modalText.innerHTML = `
             <div class="inputEnvil" style="display: none;">
                 <input type="text" name="PastFile" class="inputModal" value="`+Past+`">
             </div>
             <div class="inputEnvil">
-                <label>Criar Arquivo Vazio</label>
+                <label>Criar Pasta Vazia</label>
                 <input type="text" name="NomePast" placeholder="Nome Da Pasta" class="inputModal" minlength="1">
             </div>
         `;
     }
+}
+
+function oclModal(id, fun){
+    let modal = document.querySelector(id);
+    let time  = 700;
+    
+    modal.style.animation = (time/1000)+'s modalSumir linear';
+    setTimeout(()=>{
+        modal.style.animation = (time/1000)+'s modal linear';
+        ocultar(id, fun);
+    },time);
 }
 
 function red(page){

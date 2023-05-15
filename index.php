@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/39cab4bf95.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.js" integrity="sha256-tA8y0XqiwnpwmOIl3SGAcFl2RvxHjA8qp0+1uCGmRmg=" crossorigin="anonymous"></script>  
-    <script src="script.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <title>File Explore</title>
-</head>
-<body>
+<?php
+    include('config.php');
+    HeaderEcho('File Explore','style.css');
+?>
     <form class="modal" id="modal" method="post" enctype="multipart/form-data">
+        <i onclick="oclModal('#modal', 0)" class="iconModal fa-solid fa-circle-xmark"></i>
         <div class="modalCenter" id="modalCenter">
             
         </div>
@@ -22,6 +14,11 @@
         <div class="ul"><i class="icon fa-solid fa-solid fa-image"></i> Imagem</div>
         <div class="ul"><i class="icon fa-solid fa-film"></i> Video</div>
         <div class="ul"><i class="icon fa-solid fa-volume-off"></i> Audio</div>
+        <div class="ul"><i class="icon fa-solid fa-cube"></i> Objeto 3D</div>
+        <div class="ul"><i class="icon fa-solid fa-desktop"></i> Web Page</div>
+        <div class="ul"><i class="icon fa-regular fa-file-lines"></i> Documento</div>
+        <div class="ul"><i class="fa-solid fa-file-code"></i> Código</div>
+        <div class="ul"><i class="icon fa-solid fa-file-zipper"></i> Compactado</div>
         <div class="ul"><i class="icon fa-solid fa-folder"></i> Pasta</div>
     </div>
 <?php
@@ -38,11 +35,6 @@
         </div>
         ';
         echo '<div class="painel">';
-        $exts = array(
-            array('jpg', 'jpeg', 'png', 'gif'),//imagem
-            array('mp4', 'avi', 'mov', 'wmv'),//video
-            array('mp3', 'wav', 'ogg')//audio
-        );
         $nmFile = "";
         $ext = "";
         $icon = "";
@@ -67,6 +59,16 @@
                         $icon = 'fa-solid fa-film';
                     }else if(in_array($ext, $exts[2])){
                         $icon = 'fa-solid fa-volume-off';
+                    }else if(in_array($ext, $exts[3])){
+                        $icon = 'fa-solid fa-cube';
+                    }else if(in_array($ext, $exts[4])){
+                        $icon = 'fa-solid fa-desktop';
+                    }else if(in_array($ext, $exts[5])){
+                        $icon = 'fa-regular fa-file-lines';
+                    }else if(in_array($ext, $exts[6])){
+                        $icon = 'fa-regular ';
+                    }else if(in_array($ext, $exts[7])){
+                        $icon = 'fa-regular ';
                     }else{
                         $icon = 'fa-solid fa-file';
                     }
@@ -78,10 +80,10 @@
                                                     <input type="checkbox" id="'.$past.'/'.$file.'">
                                                     <i class="icon '.$icon.'"></i>
                                                     <label>'.$nmFile.'</label>
-                                                    <button class="btn">Excluir</button>
-                                                    <button class="btn">Renomear</button>
+                                                    <a class="btn" href="ex.php?past='.$past.'/'.$file.'&pastDad='.$past.'">Excluir</a>
+                                                    <a class="btn" href="rename.php?past='.$past.'/'.$file.'&pastDad='.$past.'&name='.$file.'">Renomear</a>
                                                     <a class="btn" href="index.php?past='.$past.'/'.$file.'">Abrir</a>
-                                                    <button class="btn">Clonar</button>
+                                                    <a class="btn" href="duplic.php?past='.$past.'/'.$file.'&pastDad='.$past.'&name='.$file.'">Duplicar</a>
                                                 </div>
                                             ':
                                             '
@@ -89,18 +91,15 @@
                                                     <input type="checkbox" id="'.$past.'/'.$file.'">
                                                     <i class="icon '.$icon.'"></i>
                                                     <label>'.$file.'</label>
-                                                    <button class="btn">Excluir</button>
-                                                    <button class="btn">Renomear</button>
+                                                    <a class="btn" href="ex.php?past='.$past.'/'.$file.'&pastDad='.$past.'">Excluir</a>
+                                                    <a class="btn" href="rename.php?past='.$past.'/'.$file.'&pastDad='.$past.'&name='.$file.'">Renomear</a>
                                                     <a class="btn" href="index.php?past='.$past.'/'.$file.'">Abrir</a>
-                                                    <button class="btn">Clonar</button>
+                                                    <a class="btn" href="duplic.php?past='.$past.'/'.$file.'&pastDad='.$past.'&name='.$file.'">Duplicar</a>
                                                 </div>
                                             '
                                         )
             :'
                 <div class="linha">
-                    <input type="checkbox" id="'.$nmFile.'">
-                    <i class="icon '.$icon.'"></i>
-                    <label> <-- </label>
                     <a class="btn" href="index.php?past='.$DirPai.'">Voltar</a>
                 </div>
             ';
@@ -112,20 +111,17 @@
 
     }
 ?>
-</body>
-</html>
+    <script>
+        $('#modalCenter').on('change', '#UploadFile', function() {
+            let label = document.querySelector('#labInputFile');
+            label.innerHTML = 'Arquivo enviado';
+            label.setAttribute("for", null);
+            label.classList.add('label-hover');
+            label.classList.remove('lbM');
+        });
+    </script>
 <?php
-    function move($page){
-        echo '<script>red("'.$page.'");</script>';
-    }
-    function mensage($txt){
-        echo '<script>alert("'.$txt.'");</script>';
-    }
-    function UpFile($file, $dir, $name, $ext){
-        $linkF = $dir.'/'.$name.'.'.$ext;
-        move_uploaded_file($file['tmp_name'], $linkF);
-    }
-
+    footEcho();
     if(isset($_POST['env'])){
         $folder = $_POST['PastFile'];
         
