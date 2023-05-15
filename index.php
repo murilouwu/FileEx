@@ -9,6 +9,8 @@
         </div>
         <input type="submit" class="btnModal" value="Criar" name="env">
     </form>
+    <div class="menuMouse" id="mouse">
+    </div>
     <div class="legenda">
         <div class="ul"><i class="icon fa-solid fa-file"></i> Arquivo</div>
         <div class="ul"><i class="icon fa-solid fa-solid fa-image"></i> Imagem</div>
@@ -76,30 +78,34 @@
             }
             $TextFin = $file != '..'? ($icon!='fa-solid fa-file'? 
                                             '
-                                                <div class="linha" onclick="ulOnclick(this)">
+                                                <div class="linha" onclick="ulOnclick(this)" ondblclick="aOnclick(this)">
                                                     <input type="checkbox" id="'.$past.'/'.$file.'">
                                                     <i class="icon '.$icon.'"></i>
-                                                    <label>'.$nmFile.'</label>
-                                                    <a class="btn" href="ex.php?past='.$past.'/'.$file.'&pastDad='.$past.'">Excluir</a>
-                                                    <a class="btn" href="rename.php?past='.$past.'/'.$file.'&pastDad='.$past.'&name='.$file.'">Renomear</a>
-                                                    <a class="btn" href="index.php?past='.$past.'/'.$file.'">Abrir</a>
-                                                    <a class="btn" href="duplic.php?past='.$past.'/'.$file.'&pastDad='.$past.'&name='.$file.'">Duplicar</a>
+                                                    <label id="lb'.$file.'">'.$nmFile.'</label>
+                                                    <div class="ocultar btnsFuns">
+                                                        <a href="index.php?past='.$past.'/'.$file.'">Abrir</a>
+                                                        <button onclick="formRename(\'#lb'.$file.'\', \'#'.$past.'\', \'#'.$file.'\')">Renomear</button>
+                                                        <a href="duplic.php?past='.$past.'/'.$file.'&pastDad='.$past.'&name='.$file.'">Duplicar</a>
+                                                        <a href="ex.php?past='.$past.'/'.$file.'&pastDad='.$past.'">Excluir</a>
+                                                    </div>
                                                 </div>
                                             ':
                                             '
-                                                <div class="linha" onclick="ulOnclick(this)">
+                                                <div class="linha" onclick="ulOnclick(this)" ondblclick="aOnclick(this)">
                                                     <input type="checkbox" id="'.$past.'/'.$file.'">
                                                     <i class="icon '.$icon.'"></i>
-                                                    <label>'.$file.'</label>
-                                                    <a class="btn" href="ex.php?past='.$past.'/'.$file.'&pastDad='.$past.'">Excluir</a>
-                                                    <a class="btn" href="rename.php?past='.$past.'/'.$file.'&pastDad='.$past.'&name='.$file.'">Renomear</a>
-                                                    <a class="btn" href="index.php?past='.$past.'/'.$file.'">Abrir</a>
-                                                    <a class="btn" href="duplic.php?past='.$past.'/'.$file.'&pastDad='.$past.'&name='.$file.'">Duplicar</a>
+                                                    <label id="lb'.$file.'">'.$file.'</label>
+                                                    <div class="ocultar btnsFuns">
+                                                        <a href="index.php?past='.$past.'/'.$file.'">Abrir</a>
+                                                        <button onclick="formRename(\'#lb'.$file.'\', \'#'.$past.'\', \'#'.$file.'\')">Renomear</button>
+                                                        <a href="duplic.php?past='.$past.'/'.$file.'&pastDad='.$past.'&name='.$file.'">Duplicar</a>
+                                                        <a href="ex.php?past='.$past.'/'.$file.'&pastDad='.$past.'">Excluir</a>
+                                                    </div>
                                                 </div>
                                             '
                                         )
             :'
-                <div class="linha">
+                <div class="linha" ondblclick="aOnclick(this)">
                     <a class="btn" href="index.php?past='.$DirPai.'">Voltar</a>
                 </div>
             ';
@@ -111,7 +117,56 @@
 
     }
 ?>
-    <script>
+    <script> 
+        let visible = false;
+        let hoverInDIv = false;
+        let menuHover = false;
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+            if (event.button === 2) {
+                visible = visible? false:true;
+                let fun = hoverInDIv? 1:0;
+                ocultar('#mouse', fun);
+            }
+        });
+        document.addEventListener('click', function(event) {
+            if(!hoverInDIv){
+                visible = visible==true? false:true;
+                let fun = hoverInDIv? 1:0;
+                ocultar('#mouse', fun);
+            }
+        });
+
+        const divs = document.querySelectorAll('.linha');//classhover
+        let mo = document.querySelector('#mouse');//mouse
+
+        mo.addEventListener('mouseover', ()=>{
+            menuHover = true;
+        });
+
+        divs.forEach(function(div) {
+            div.addEventListener('mouseover', function() {
+                hoverInDIv = true;
+                var List = this.querySelector('.btnsFuns');
+                mo.innerHTML = List.innerHTML;
+                menuHover = false;
+            });
+
+            div.addEventListener('mouseout', function() {
+                hoverInDIv = false;
+            });
+        });
+
+        document.addEventListener('mousemove', function(m){
+            var x = m.pageX+15;
+            var y = m.pageY+2;
+            let mouseVisible = mo.style.display;
+            if(mouseVisible=='none' || !menuHover){
+                mo.style.left = x +'px';
+                mo.style.top = y +'px';
+            }
+        });
+
         $('#modalCenter').on('change', '#UploadFile', function() {
             let label = document.querySelector('#labInputFile');
             label.innerHTML = 'Arquivo enviado';

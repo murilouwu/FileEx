@@ -66,3 +66,8 @@ function oclModal(id, fun){
 function red(page){
     window.location = page;
 }
+
+function aOnclick(linha){
+    var filho = linha.querySelector('.btnsFuns');
+    filho.children[0].click();
+}
