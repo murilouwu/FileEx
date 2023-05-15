@@ -12,13 +12,5 @@
     
 	clone_file($past, $pastDad, $name);
 
-    echo '<a href="index.php?past='.$pastDad.'" id="click">index.php</a>';
-	echo '
-		<script>
-	        window.onload = ()=>{
-	            let div = document.querySelector("#click");
-	            div.click();
-	        };
-	    </script>
-	';
+	moveLink($pastDad);
 ?>

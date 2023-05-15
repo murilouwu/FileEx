@@ -1,4 +1,15 @@
 <?php
+    function moveLink($past){
+        echo '<a href="index.php?past='.$past.'" id="click">index</a>';
+        echo '
+            <script>
+                window.onload = ()=>{
+                    let div = document.querySelector("#click");
+                    div.click();
+                };
+            </script>
+        ';
+    }
     function renameFolder($source, $destination) {
         if (!is_dir($source)) {
             return false;

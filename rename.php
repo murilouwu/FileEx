@@ -33,30 +33,15 @@
     		if(is_dir($oldName)){
     			$nmFinal = $folder.'/'.$newName;
     			renameFolder($oldName, $nmFinal);
-    			echo '<a href="index.php?past='.$folder.'" id="click">index.php</a>';
-				echo '
-					<script>
-				        window.onload = ()=>{
-				            let div = document.querySelector("#click");
-				            div.click();
-				        };
-				    </script>
-				';
+    			
+    			moveLink($folder);
     		}else{
     			$extNew = 'a.'.$_POST['NewExt'];
 		        if(!empty(pathinfo($extNew, PATHINFO_EXTENSION))){
 		        	$nmFinal = $folder.'/'.$newName.'.'.$_POST['NewExt'];
 					rename($oldName, $nmFinal);
 
-					echo '<a href="index.php?past='.$folder.'" id="click">index.php</a>';
-					echo '
-						<script>
-					        window.onload = ()=>{
-					            let div = document.querySelector("#click");
-					            div.click();
-					        };
-					    </script>
-					';
+					moveLink($folder);
 				} else {
 					mensage('Coloque uma extenção Real!!'); 
 				}

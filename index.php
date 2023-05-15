@@ -145,7 +145,8 @@
                     continue;
                 }
             };
-            move('index.php');
+            
+            moveLink($folder);
         }else if(isset($_POST['NomePast'])){
             $filename = $folder.'/'.$_POST['NomePast'];
 
@@ -161,7 +162,8 @@
                     continue;
                 }
             };
-            move('index.php');
+            
+            moveLink($folder);
         }else{
             $path = $_POST['Filename'];
             $ext = pathinfo($path, PATHINFO_EXTENSION);
@@ -181,7 +183,8 @@
                         continue;
                     }
                 };
-                move('index.php');
+                
+                moveLink($folder);
             } else {
                 mensage('Arquivo inválido');
             }
