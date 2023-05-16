@@ -33,7 +33,7 @@
         <div class="tolls">
             <div class="toll" onclick="ModalOpen(0, \''.$past.'\', \'#modalCenter\')"><h3>Criar Arquivo</h3><i class="icon fa-solid fa-plus"></i></div>
             <div class="toll" onclick="ModalOpen(1, \''.$past.'\', \'#modalCenter\')"><h3>Criar Pasta</h3><i class="icon fa-solid fa-folder-plus"></i></div>
-            <div class="toll" onclick=""><h3>Deletar Marcados</h3><i class="icon fa-solid fa-trash"></i></div>
+            <div class="toll" id="DeletetollMutiple" onclick="Del([])"><h3>Deletar Marcados</h3><i class="icon fa-solid fa-trash"></i></div>
         </div>
         ';
         echo '<div class="painel">';
@@ -80,7 +80,7 @@
             $TextFin = $file != '..'? ($icon!='fa-solid fa-file'? 
                                             '
                                                 <div class="linha" onclick="ulOnclick(this)" ondblclick="aOnclick(this)">
-                                                    <input type="checkbox" id="'.$past.'/'.$file.'">
+                                                    <input type="checkbox" class="checkboxDel" value="'.$past.'/'.$file.'">
                                                     <i class="icon '.$icon.'"></i>
                                                     <div class="label" id="label'.$a.'">'.$nmFile.'</div>
                                                     <div class="ocultar btnsFuns">
@@ -93,7 +93,7 @@
                                             ':
                                             '
                                                 <div class="linha" onclick="ulOnclick(this)" ondblclick="aOnclick(this)">
-                                                    <input type="checkbox" id="'.$past.'/'.$file.'">
+                                                    <input type="checkbox" class="checkboxDel" value="'.$past.'/'.$file.'">
                                                     <i class="icon '.$icon.'"></i>
                                                     <div class="label" id="label'.$a.'">'.$file.'</div>
                                                     <div class="ocultar btnsFuns">
@@ -119,7 +119,12 @@
 
     }
 ?>
-    <script> 
+    <script>
+        var checkboxes = document.querySelectorAll('.checkboxDel');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', updateDelValues);
+        });
+
         let visible = false;
         let hoverInDIv = false;
         let menuHover = false;
@@ -248,5 +253,42 @@
                 mensage('Arquivo inválido');
             }
         }
+    }
+    if(isset($_POST['Rename'])){
+        $oldName = $_POST['oldName'];
+    	$folder = $_POST['past'];
+    	$newName = $_POST['NewName'];
+        $oldExt = $_POST['oldExt'];
+    	$ext = pathinfo($newName, PATHINFO_EXTENSION);
+
+    	if (empty($ext)) {//não colocou extenção
+            if(is_dir($oldName)){
+    			$nmFinal = $folder.'/'.$newName;
+    			renameFolder($oldName, $nmFinal);
+    			
+    			moveLink($folder);
+    		}else{
+    			$nmFinal = $folder.'/'.$newName.'.'.$oldExt;
+				rename($oldName, $nmFinal);
+				moveLink($folder);
+    		}
+	    }else{//colocou
+	    	if(is_dir($oldName)){
+    			$nmFinal = $folder.'/'.$newName;
+    			renameFolder($oldName, $nmFinal);
+    			
+    			moveLink($folder);
+    		}else{
+    			$extNew = 'a.'.$ext;
+		        if(!empty(pathinfo($extNew, PATHINFO_EXTENSION))){
+		        	$nmFinal = $folder.'/'.$newName;
+					rename($oldName, $nmFinal);
+
+					moveLink($folder);
+				} else {
+					mensage('Coloque uma extenção Real!!'); 
+				}
+    		}
+	    }
     }
 ?>

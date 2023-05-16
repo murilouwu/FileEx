@@ -7,6 +7,27 @@ function ocultar(obj, es){
     };
 };
 
+function updateDelValues() {
+    var checkboxes = document.querySelectorAll('.checkboxDel');
+    var values = [];
+
+    checkboxes.forEach(function(checkbox) {
+        if (checkbox.checked) {
+            values.push(checkbox.value);
+        }
+    });
+
+    var updatedOnclick = 'Del([' + values.join(',') + '])';
+    setDelOnclick(updatedOnclick);
+}
+
+function setDelOnclick(onclickValue) {
+    var deleteButton = document.getElementById('DeletetollMutiple');
+    deleteButton.onclick = function() {
+        eval(onclickValue);
+    };
+}
+
 function ulOnclick(ul){
     if(ul.style.backgroundColor == 'var(--Gold)'){
         ul.style.backgroundColor = 'var(--BigBlack)';
@@ -67,15 +88,18 @@ function red(page){
     window.location = page;
 }
 
-function aOnclick(linha){
+function aOnclick(linha) {
     var filho = linha.querySelector('.btnsFuns');
-    filho.children[0].click();
-}
+    var checkbox = filho.children[0];
+  
+    checkbox.click();
+  }
 
 function formRename(labelid, past, file, ext, nm){
+    let id = labelid.substring(1);
     let div = document.querySelector(labelid);
     let formHTML = `
-        <form class="formRename" method="post">
+        <form class="formRename" method="post" id="${id}">
             <input type="hidden" name="oldExt" value="${ext}" class="ocultar">
             <input type="hidden" name="oldName" value="${past}/${file}" class="ocultar">
             <input type="hidden" name="past" value="${past}" class="ocultar">
@@ -83,11 +107,20 @@ function formRename(labelid, past, file, ext, nm){
             <label class="btn" for="subimit${nm}">
                 <i class="fa-solid fa-check"></i>
             </label>
-            <label class="btn">
+            <label class="btn" onclick="FormRenameRet('${labelid}', '${nm}')">
                 <i class="fa-solid fa-xmark"></i>
             </label>
-            <input id="subimit${nm}" type="submit" name="Rename" class="ocultar" value="Renomear">
+            <input id="subimit${nm}" type="submit" name="Rename" class="ocultar">
         </form>
     `;
-    div.innerHTML = formHTML;
+    div.outerHTML  = formHTML;
+}
+
+function FormRenameRet(labelid, nm){
+    let id = labelid.substring(1);
+    let div = document.querySelector(labelid);
+    let formHTML = `
+        <div class="label" id="${id}">${nm}</div>
+    `;
+    div.outerHTML  = formHTML;
 }
