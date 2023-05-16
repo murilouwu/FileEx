@@ -144,25 +144,9 @@
         cursor: pointer;
         box-shadow: 0px 3px 7px -2px var(--ShadowGold);
       }
-        .painel .linha label{
+        .painel .linha .label{
           margin-left: 2vw;
         }
-      .painel .linha .btn{
-        display: flex;
-        background-color: var(--ShadowGold);
-        border: none;
-        padding: 0.5vw;
-        font-size: 1.5vh;
-        font-family: monospace;
-        font-weight: bold;
-        color: var(--Black);
-        border-radius: 0.5vw;
-        text-decoration: none;
-    }
-      .painel .linha .btn:hover{
-          cursor: pointer;
-          font-size: 2vh;
-      }
 .modal{
     display: none;
     position: fixed;

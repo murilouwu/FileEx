@@ -71,3 +71,23 @@ function aOnclick(linha){
     var filho = linha.querySelector('.btnsFuns');
     filho.children[0].click();
 }
+
+function formRename(labelid, past, file, ext, nm){
+    let div = document.querySelector(labelid);
+    let formHTML = `
+        <form class="formRename" method="post">
+            <input type="hidden" name="oldExt" value="${ext}" class="ocultar">
+            <input type="hidden" name="oldName" value="${past}/${file}" class="ocultar">
+            <input type="hidden" name="past" value="${past}" class="ocultar">
+            <input type="text" name="NewName" class="inputRename" minlength="1" maxlength="150" value="${nm}">
+            <label class="btn" for="subimit${nm}">
+                <i class="fa-solid fa-check"></i>
+            </label>
+            <label class="btn">
+                <i class="fa-solid fa-xmark"></i>
+            </label>
+            <input id="subimit${nm}" type="submit" name="Rename" class="ocultar" value="Renomear">
+        </form>
+    `;
+    div.innerHTML = formHTML;
+}

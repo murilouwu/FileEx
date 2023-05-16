@@ -42,6 +42,7 @@
         $icon = "";
         $dir = dir($past);
         $DirPai = dirname($past);
+        $a = 0;
         while(($file = $dir->read()) !== false){
             if($file == '.' || $DirPai == '.' && $file == '..') {
                 continue;
@@ -81,10 +82,10 @@
                                                 <div class="linha" onclick="ulOnclick(this)" ondblclick="aOnclick(this)">
                                                     <input type="checkbox" id="'.$past.'/'.$file.'">
                                                     <i class="icon '.$icon.'"></i>
-                                                    <label id="lb'.$file.'">'.$nmFile.'</label>
+                                                    <div class="label" id="label'.$a.'">'.$nmFile.'</div>
                                                     <div class="ocultar btnsFuns">
                                                         <a href="index.php?past='.$past.'/'.$file.'">Abrir</a>
-                                                        <button onclick="formRename(\'#lb'.$file.'\', \'#'.$past.'\', \'#'.$file.'\')">Renomear</button>
+                                                        <button onclick="formRename(\'#label'.$a.'\', \''.$past.'\', \''.$file.'\', \''.$ext.'\', \''.$nmFile.'\')">Renomear</button>
                                                         <a href="duplic.php?past='.$past.'/'.$file.'&pastDad='.$past.'&name='.$file.'">Duplicar</a>
                                                         <a href="ex.php?past='.$past.'/'.$file.'&pastDad='.$past.'">Excluir</a>
                                                     </div>
@@ -94,10 +95,10 @@
                                                 <div class="linha" onclick="ulOnclick(this)" ondblclick="aOnclick(this)">
                                                     <input type="checkbox" id="'.$past.'/'.$file.'">
                                                     <i class="icon '.$icon.'"></i>
-                                                    <label id="lb'.$file.'">'.$file.'</label>
+                                                    <div class="label" id="label'.$a.'">'.$file.'</div>
                                                     <div class="ocultar btnsFuns">
                                                         <a href="index.php?past='.$past.'/'.$file.'">Abrir</a>
-                                                        <button onclick="formRename(\'#lb'.$file.'\', \'#'.$past.'\', \'#'.$file.'\')">Renomear</button>
+                                                        <button onclick="formRename(\'#label'.$a.'\', \''.$past.'\', \''.$file.'\', \''.$ext.'\', \''.$nmFile.'\')">Renomear</button>
                                                         <a href="duplic.php?past='.$past.'/'.$file.'&pastDad='.$past.'&name='.$file.'">Duplicar</a>
                                                         <a href="ex.php?past='.$past.'/'.$file.'&pastDad='.$past.'">Excluir</a>
                                                     </div>
@@ -110,6 +111,7 @@
                 </div>
             ';
             echo $TextFin;
+            $a++;
         }
         $dir->close();
         echo '</div>';
@@ -122,7 +124,9 @@
         let hoverInDIv = false;
         let menuHover = false;
         document.addEventListener('contextmenu', function(event) {
-            event.preventDefault();
+            if(hoverInDIv){
+                event.preventDefault();
+            }
             if (event.button === 2) {
                 visible = visible? false:true;
                 let fun = hoverInDIv? 1:0;
@@ -158,7 +162,7 @@
         });
 
         document.addEventListener('mousemove', function(m){
-            var x = m.pageX+15;
+            var x = m.pageX+4;
             var y = m.pageY+2;
             let mouseVisible = mo.style.display;
             if(mouseVisible=='none' || !menuHover){
