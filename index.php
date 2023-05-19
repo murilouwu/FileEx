@@ -264,27 +264,40 @@
     	if (empty($ext)) {//não colocou extenção
             if(is_dir($oldName)){
     			$nmFinal = $folder.'/'.$newName;
-    			renameFolder($oldName, $nmFinal);
-    			
-    			moveLink($folder);
+                if(!file_exists($nmFinal)){
+                    renameFolder($oldName, $nmFinal);
+    			    moveLink($folder);
+                }else{
+                    mensage('Esse arquivo já existe!!');
+                }
     		}else{
     			$nmFinal = $folder.'/'.$newName.'.'.$oldExt;
-				rename($oldName, $nmFinal);
-				moveLink($folder);
+				if(!file_exists($nmFinal)){
+                    rename($oldName, $nmFinal);
+				    moveLink($folder);
+                }else{
+                    mensage('Esse arquivo já existe!!');
+                }
     		}
 	    }else{//colocou
 	    	if(is_dir($oldName)){
     			$nmFinal = $folder.'/'.$newName;
-    			renameFolder($oldName, $nmFinal);
-    			
-    			moveLink($folder);
+    			if(!file_exists($nmFinal)){
+                    renameFolder($oldName, $nmFinal);
+    			    moveLink($folder);
+                }else{
+                    mensage('Esse arquivo já existe!!');
+                }
     		}else{
     			$extNew = 'a.'.$ext;
 		        if(!empty(pathinfo($extNew, PATHINFO_EXTENSION))){
 		        	$nmFinal = $folder.'/'.$newName;
-					rename($oldName, $nmFinal);
-
-					moveLink($folder);
+					if(!file_exists($nmFinal)){
+                        rename($oldName, $nmFinal);
+                        moveLink($folder);
+                    }else{
+                        mensage('Esse arquivo já existe!!');
+                    }
 				} else {
 					mensage('Coloque uma extenção Real!!'); 
 				}

@@ -13,18 +13,13 @@ function updateDelValues() {
 
     checkboxes.forEach(function(checkbox) {
         if (checkbox.checked) {
-            values.push(checkbox.value);
+        values.push(checkbox.value);
         }
     });
 
-    var updatedOnclick = 'Del([' + values.join(',') + '])';
-    setDelOnclick(updatedOnclick);
-}
-
-function setDelOnclick(onclickValue) {
     var deleteButton = document.getElementById('DeletetollMutiple');
     deleteButton.onclick = function() {
-        eval(onclickValue);
+        Del(values);
     };
 }
 
