@@ -8,7 +8,7 @@ function ocultar(obj, es){
 };
 
 function updateDelValues() {
-    var checkboxes = document.querySelectorAll('.checkboxDel');
+    /*var checkboxes = document.querySelectorAll('.checkboxDel');
     var values = [];
 
     checkboxes.forEach(function(checkbox) {
@@ -20,7 +20,7 @@ function updateDelValues() {
     var deleteButton = document.getElementById('DeletetollMutiple');
     deleteButton.onclick = function() {
         Del(values);
-    };
+    };*/
 }
 
 function ulOnclick(ul){

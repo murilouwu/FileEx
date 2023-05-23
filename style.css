@@ -147,6 +147,20 @@
         .painel .linha .label{
           margin-left: 2vw;
         }
+        .painel .linha .btn{
+          display: flex;
+          width: 7vw;
+          height: 4vh;
+          align-items: center;
+          justify-content: center;
+          border-radius: 1vw;
+          background-color: var(--Gold);
+          color: var(--Black);
+          font-weight: bold;
+          font-family: monospace;
+          font-size: 2vh;
+          text-decoration: none;
+        }
 .modal{
     display: none;
     position: fixed;

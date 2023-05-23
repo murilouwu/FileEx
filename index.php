@@ -2,27 +2,6 @@
     include('config.php');
     HeaderEcho('File Explore','style.css');
 ?>
-    <form class="modal" id="modal" method="post" enctype="multipart/form-data">
-        <i onclick="oclModal('#modal', 0)" class="iconModal fa-solid fa-circle-xmark"></i>
-        <div class="modalCenter" id="modalCenter">
-            
-        </div>
-        <input type="submit" class="btnModal" value="Criar" name="env">
-    </form>
-    <div class="menuMouse" id="mouse">
-    </div>
-    <div class="legenda">
-        <div class="ul"><i class="icon fa-solid fa-file"></i> Arquivo</div>
-        <div class="ul"><i class="icon fa-solid fa-solid fa-image"></i> Imagem</div>
-        <div class="ul"><i class="icon fa-solid fa-film"></i> Video</div>
-        <div class="ul"><i class="icon fa-solid fa-volume-off"></i> Audio</div>
-        <div class="ul"><i class="icon fa-solid fa-cube"></i> Objeto 3D</div>
-        <div class="ul"><i class="icon fa-solid fa-desktop"></i> Web Page</div>
-        <div class="ul"><i class="icon fa-regular fa-file-lines"></i> Documento</div>
-        <div class="ul"><i class="fa-solid fa-file-code"></i> Código</div>
-        <div class="ul"><i class="icon fa-solid fa-file-zipper"></i> Compactado</div>
-        <div class="ul"><i class="icon fa-solid fa-folder"></i> Pasta</div>
-    </div>
 <?php
     $past = "FolderAdm";
     if(isset($_GET["past"])){
@@ -30,6 +9,27 @@
     }
     if(is_dir($past)){
         echo '
+        <form class="modal" id="modal" method="post" enctype="multipart/form-data">
+            <i onclick="oclModal(\'#modal\', 0)" class="iconModal fa-solid fa-circle-xmark"></i>
+            <div class="modalCenter" id="modalCenter">
+                
+            </div>
+            <input type="submit" class="btnModal" value="Criar" name="env">
+        </form>
+        <div class="menuMouse" id="mouse">
+        </div>
+        <div class="legenda">
+            <div class="ul"><i class="icon fa-solid fa-file"></i> Arquivo</div>
+            <div class="ul"><i class="icon fa-solid fa-solid fa-image"></i> Imagem</div>
+            <div class="ul"><i class="icon fa-solid fa-film"></i> Video</div>
+            <div class="ul"><i class="icon fa-solid fa-volume-off"></i> Audio</div>
+            <div class="ul"><i class="icon fa-solid fa-cube"></i> Objeto 3D</div>
+            <div class="ul"><i class="icon fa-solid fa-desktop"></i> Web Page</div>
+            <div class="ul"><i class="icon fa-regular fa-file-lines"></i> Documento</div>
+            <div class="ul"><i class="fa-solid fa-file-code"></i> Código</div>
+            <div class="ul"><i class="icon fa-solid fa-file-zipper"></i> Compactado</div>
+            <div class="ul"><i class="icon fa-solid fa-folder"></i> Pasta</div>
+        </div>
         <div class="tolls">
             <div class="toll" onclick="ModalOpen(0, \''.$past.'\', \'#modalCenter\')"><h3>Criar Arquivo</h3><i class="icon fa-solid fa-plus"></i></div>
             <div class="toll" onclick="ModalOpen(1, \''.$past.'\', \'#modalCenter\')"><h3>Criar Pasta</h3><i class="icon fa-solid fa-folder-plus"></i></div>
@@ -108,6 +108,9 @@
             :'
                 <div class="linha" ondblclick="aOnclick(this)">
                     <a class="btn" href="index.php?past='.$DirPai.'">Voltar</a>
+                    <div class="ocultar btnsFuns">
+                        <a href="index.php?past='.$DirPai.'">Voltar</a>
+                    </div>
                 </div>
             ';
             echo $TextFin;
@@ -116,7 +119,19 @@
         $dir->close();
         echo '</div>';
     }else{
-
+        echo '
+        <form class="modal" id="modal" method="post" enctype="multipart/form-data">
+            <i onclick="oclModal(\'#modal\', 0)" class="iconModal fa-solid fa-circle-xmark"></i>
+            <div class="modalCenter" id="modalCenter">
+                
+            </div>
+            <input type="submit" class="btnModal" value="Criar" name="env">
+        </form>
+        <div class="menuMouse" id="mouse">
+        </div>
+        ';
+        echo '<div class="painelFile">';
+        echo '</div>';
     }
 ?>
     <script>
