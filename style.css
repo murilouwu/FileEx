@@ -114,6 +114,24 @@
         .tolls .toll .icon{
             display: flex;
         }
+  .painelFile{
+    display: flex;
+    width: 88vw;
+    margin-top: 5vh;
+    height: 78vh;
+    flex-direction: column;
+    background-color: var(--BigBlack);
+    border: 3px solid var(--ShadowGold);
+    padding: 1vw;
+    overflow-y: overlay;
+    border-radius: 0.5vw;
+    justify-content: center;
+    align-items: center;
+  }
+    .imgMostPainel{
+      height: 90%;
+      border-radius: 0.5vw;
+    }
   .painel{
       display: flex;
       width: 88vw;
@@ -282,7 +300,6 @@
       background-color: var(--ShadowGold);
       cursor: pointer;
     }
-
 @keyframes modal{
     0%{
         margin-top: -80vh;

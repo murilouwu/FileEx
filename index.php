@@ -131,6 +131,13 @@
         </div>
         ';
         echo '<div class="painelFile">';
+        
+        $fileInfo = pathinfo($past);
+        $nmFile = $fileInfo['filename'];
+        $ext = $fileInfo['extension'];
+        if(in_array($ext, $exts[0])){
+            echo '<img src="'.$past.'" class="imgMostPainel">';
+        }
         echo '</div>';
     }
 ?>
