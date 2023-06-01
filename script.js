@@ -98,7 +98,7 @@ function formRename(labelid, past, file, ext, nm){
             <input type="hidden" name="oldExt" value="${ext}" class="ocultar">
             <input type="hidden" name="oldName" value="${past}/${file}" class="ocultar">
             <input type="hidden" name="past" value="${past}" class="ocultar">
-            <input type="text" name="NewName" class="inputRename" minlength="1" maxlength="150" value="${nm}">
+            <input type="text" id="NewName${nm}" name="NewName" class="inputRename" minlength="1" maxlength="150" value="${nm}">
             <label class="btn" for="subimit${nm}">
                 <i class="fa-solid fa-check"></i>
             </label>
@@ -109,6 +109,9 @@ function formRename(labelid, past, file, ext, nm){
         </form>
     `;
     div.outerHTML  = formHTML;
+    let idInput = `#NewName${nm}`;
+    let input = document.querySelector(idInput);
+    input.focus();
 }
 
 function FormRenameRet(labelid, nm){
