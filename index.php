@@ -33,7 +33,7 @@
         <div class="tolls">
             <div class="toll" onclick="ModalOpen(0, \''.$past.'\', \'#modalCenter\')"><h3>Criar Arquivo</h3><i class="icon fa-solid fa-plus"></i></div>
             <div class="toll" onclick="ModalOpen(1, \''.$past.'\', \'#modalCenter\')"><h3>Criar Pasta</h3><i class="icon fa-solid fa-folder-plus"></i></div>
-            <div class="toll" id="DeletetollMutiple" onclick="Del([])"><h3>Deletar Marcados</h3><i class="icon fa-solid fa-trash"></i></div>
+            <div class="toll" id="DeletetollMutiple"><h3>Deletar Marcados</h3><i class="icon fa-solid fa-trash"></i></div>
         </div>
         ';
         echo '<div class="painel">';
@@ -69,9 +69,9 @@
                     }else if(in_array($ext, $exts[5])){
                         $icon = 'fa-regular fa-file-lines';
                     }else if(in_array($ext, $exts[6])){
-                        $icon = 'fa-regular ';
+                        $icon = 'fa-solid fa-file-code';
                     }else if(in_array($ext, $exts[7])){
-                        $icon = 'fa-regular ';
+                        $icon = 'fa-solid fa-file-zipper';
                     }else{
                         $icon = 'fa-solid fa-file';
                     }
@@ -130,6 +130,12 @@
         <div class="menuMouse" id="mouse">
         </div>
         ';
+        echo '
+        <div class="tolls">
+            <div class="toll"><h3>Voltar</h3><i class="fa-solid fa-arrow-left"></i></div>
+            <div class="toll"><h3>Deletar arquivo</h3><i class="icon icon fa-solid fa-trash"></i></div>
+        </div>
+        ';
         echo '<div class="painelFile">';
         
         $fileInfo = pathinfo($past);
@@ -137,6 +143,16 @@
         $ext = $fileInfo['extension'];
         if(in_array($ext, $exts[0])){
             echo '<img src="'.$past.'" class="imgMostPainel">';
+        }else if(in_array($ext, $exts[1])){
+            echo '<video src="'.$past.'" controls></video>';
+        }else if(in_array($ext, $exts[2])){
+            echo '<audio src="'.$past.'" preload="auto" controls></audio>';
+        }else if(in_array($ext, $exts[4])){
+            $page = file_get_contents($past);
+            echo $page;
+        }else if(in_array($ext, $exts[6])){
+            $code = file_get_contents($past);
+            echo '<code>sus();</code>';
         }
         echo '</div>';
     }

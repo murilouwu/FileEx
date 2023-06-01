@@ -147,7 +147,7 @@ $exts = array(
     // 3D 3
     array('3DS', 'MAX', 'OBJ', 'FBX', 'BLEND', 'DXF', 'DAE', 'STL', 'VRML', 'FBX', 'IGES', 'STEP', 'X_T', 'JT', 'PLY', 'SKP', 'DWG', 'IFC', 'X3D', 'U3D', '3ds', 'max', 'obj', 'fbx', 'blend', 'dxf', 'dae', 'stl', 'vrml', 'fbx','iges', 'step', 'x_t', 'jt', 'ply', 'skp', 'dwg', 'ifc', 'x3d', 'u3d'),
     // Página Web 4
-    array('HTML', 'CSS', 'JS', 'PHP', 'ASP', 'JSP', 'XML', 'JSON', 'RSS', 'ATOM', 'PDF', 'XHTML', 'HTM', 'ASPX', 'CSHTML', 'SHTML', 'DHTML', 'VBHTML', 'JHTML', 'PHTML', 'html', 'css', 'js', 'php', 'asp', 'jsp', 'xml', 'json', 'rss', 'atom', 'pdf', 'xhtml', 'htm', 'aspx', 'cshtml', 'shtml', 'dhtml', 'vbhtml', 'jhtml', 'phtml'),
+    array('HTML', 'PHP', 'ASP', 'JSP', 'XML', 'JSON', 'RSS', 'ATOM', 'XHTML', 'HTM', 'ASPX', 'CSHTML', 'SHTML', 'DHTML', 'VBHTML', 'JHTML', 'PHTML', 'html', 'php', 'asp', 'jsp', 'xml', 'json', 'rss', 'atom', 'xhtml', 'htm', 'aspx', 'cshtml', 'shtml', 'dhtml', 'vbhtml', 'jhtml', 'phtml'),
     // Documentos 5
     array('DOC', 'DOCX', 'PDF', 'TXT', 'ODT', 'RTF', 'XLS', 'XLSX', 'CSV', 'PPT', 'PPTX', 'ODP', 'ODS', 'ODG', 'EPS', 'AI', 'PS', 'INDD', 'QXP', 'PUB', 'doc', 'docx', 'pdf', 'txt', 'odt', 'rtf', 'xls', 'xlsx', 'csv', 'ppt', 'pptx', 'odp', 'ods', 'odg', 'eps', 'ai', 'ps', 'indd', 'qxp', 'pub'),
     // Código 6
