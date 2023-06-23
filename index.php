@@ -148,8 +148,7 @@
         }else if(in_array($ext, $exts[2])){
             echo '<audio src="'.$past.'" preload="auto" controls></audio>';
         }else if(in_array($ext, $exts[4])){
-            $page = file_get_contents($past);
-            echo $page;
+            echo '<iframe src="'.$past.'"></iframe>';
         }else if(in_array($ext, $exts[6])){
             $code = file_get_contents($past);
             echo '<code>sus();</code>';
