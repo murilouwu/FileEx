@@ -119,6 +119,7 @@
         $dir->close();
         echo '</div>';
     }else{
+        $DirPai = dirname($past);
         echo '
         <form class="modal" id="modal" method="post" enctype="multipart/form-data">
             <i onclick="oclModal(\'#modal\', 0)" class="iconModal fa-solid fa-circle-xmark"></i>
@@ -132,8 +133,8 @@
         ';
         echo '
         <div class="tolls">
-            <div class="toll"><h3>Voltar</h3><i class="fa-solid fa-arrow-left"></i></div>
-            <div class="toll"><h3>Deletar arquivo</h3><i class="icon icon fa-solid fa-trash"></i></div>
+            <a href="index.php?past='.$DirPai.'" class="toll"><h3>Voltar</h3><i class="fa-solid fa-arrow-left"></i></a>
+            <a href="ex.php?past='.$past.'&pastDad='.$DirPai.'"" class="toll"><h3>Deletar arquivo</h3><i class="icon icon fa-solid fa-trash"></i></a>
         </div>
         ';
         echo '<div class="painelFile">';
